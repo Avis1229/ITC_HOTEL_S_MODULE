@@ -1,0 +1,49 @@
+{
+  "name": "ITC Luxury Dark Theme",
+  "dataColors": [
+    "#38BDF8",
+    "#10B981",
+    "#F59E0B",
+    "#C084FC",
+    "#F43F5E",
+    "#6366F1",
+    "#D4AF37",
+    "#34D399"
+  ],
+  "background": "#0B0F19",
+  "foreground": "#1E293B",
+  "tableAccent": "#38BDF8",
+  "visualStyles": {
+    "*": {
+      "*": {
+        "background": [
+          {
+            "color": { "solid": { "color": "#141B2D" } },
+            "transparency": 15
+          }
+        ],
+        "border": [
+          {
+            "color": { "solid": { "color": "#334155" } },
+            "show": true,
+            "radius": 10
+          }
+        ],
+        "dropShadow": [
+          {
+            "show": true,
+            "color": { "solid": { "color": "#000000" } },
+            "transparency": 60
+          }
+        ],
+        "title": [
+          {
+            "fontColor": { "solid": { "color": "#FFFFFF" } },
+            "fontSize": 12,
+            "fontFamily": "Segoe UI Semibold"
+          }
+        ]
+      }
+    }
+  }
+}
