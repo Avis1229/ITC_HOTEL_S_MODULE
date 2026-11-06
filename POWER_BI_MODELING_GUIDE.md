@@ -1,140 +1,173 @@
-# ITC Hotels — Power BI Modeling & Implementation Guide
-### Master Hospitality Executive Dashboard
-**Author:** Goku | **Target Platform:** Microsoft Power BI Desktop (Windows Dual-Boot)
+# ITC Hotels — Power BI Final Dashboard (.pbix) Blueprint
+### Matching Professor's Strict Visual Architecture & Demo Dashboard Reference
+**Target Tool:** Microsoft Power BI Desktop (Windows Dual-Boot)  
+**Reference Design:** 5-Tab Dark Executive Architecture with Top 4 Square KPI Cards
 
 ---
 
-## 1. Quick Setup in Windows
+## 1. Executive Layout Architecture (Matching Demo Image)
+
+Your demo dashboard (`media_1793968313302_8234dc6d.jpg`) has:
+1. **5 Bottom Pages/Tabs**:
+   - `Room Analytics` (Module 1)
+   - `FnB Analytics` (Module 2)
+   - `Demographics` (Module 3)
+   - `Profitability` (Module 4)
+   - `Final` (Master Executive Overview — Page 5 of 5)
+2. **Top Header & 4 Square KPI Cards**:
+   - Card 1: **Total Revenue** (`₹ 298.42 Cr`)
+   - Card 2: **Total Profit (GOP)** (`₹ 143.68 Cr`)
+   - Card 3: **Avg Occupancy** (`62.9%`)
+   - Card 4: **F&B Sales** (`₹ 104.84 Cr`)
+3. **Dark Theme Visual Canvas**:
+   - Canvas Background: Dark Slate / Navy Blue (`#0F172A` or `#13182C`)
+   - Visual Containers: Translucent Card Surface (`#1E293B`, Transparency 15%, Border `#334155`)
+   - Accent Colors: Cyan (`#38BDF8`), Emerald (`#10B981`), Gold/Amber (`#F59E0B`), Rose (`#F43F5E`)
+
+---
+
+## 2. Step-by-Step Build in Windows Power BI Desktop
+
+### Step 1: Load Master Dataset
 1. Boot into Windows on your HP Victus laptop.
 2. Open **Power BI Desktop**.
 3. Click **Get Data** ➔ **Text/CSV**.
-4. Navigate to your project folder (or USB/shared drive where you copied `itc_master_hospitality_data.csv`).
-5. Click **Load** (or *Transform Data* if you wish to inspect column types).
+4. Select `itc_master_hospitality_data.csv` (from `ITC-Final-Dashboards/`).
+5. Click **Load**.
+
+### Step 2: Configure Dark Theme
+1. In the top ribbon, go to **View** ➔ **Themes** dropdown.
+2. Choose **Dark** (or *Innovator* / *High Contrast*), or click **Customize current theme**:
+   - Background: `#0F172A`
+   - Data colors: `#38BDF8`, `#10B981`, `#F59E0B`, `#A855F7`, `#F43F5E`, `#6366F1`
+   - Visual background: `#1E293B`
+
+### Step 3: Create the 5 Pages (Bottom Navigation)
+At the bottom bar, click `+` to create 5 pages and rename them:
+1. `Room Analytics`
+2. `FnB Analytics`
+3. `Demographics`
+4. `Profitability`
+5. `Final` *(Keep this page selected for the master presentation)*
 
 ---
 
-## 2. Recommended Star Schema Data Model
-If building separate dimensional tables inside Power Query:
-- **Fact Table:** `Fact_HospitalityBookings` (`itc_master_hospitality_data.csv`)
-- **Dim_Date:** `arrival_date`, `arrival_date_year`, `arrival_date_month`
-- **Dim_Hotel:** `hotel_name` (Resort vs City Executive)
-- **Dim_Room:** `reserved_room_category`, `assigned_room_category`, `is_upgraded`
-- **Dim_Guest:** `guest_origin_country`, `geographic_region`, `guest_profile`, `loyalty_program_tier`
-- **Dim_Channel:** `channel_clean`, `customer_type`
+## 3. Ready-to-Use DAX Measures (Copy & Paste)
+Create a new measure table in Power BI by clicking **Modeling** ➔ **New Measure**:
 
----
-
-## 3. Essential Ready-to-Use DAX Measures
-Create a dedicated table named `_Measures` and add these DAX formulas:
-
-### 1. Total Gross Realized Revenue
+### Measure 1: Total Revenue (₹ Crores)
 ```dax
-Total Gross Revenue (₹ Cr) = 
+Total Revenue (₹ Cr) = 
 DIVIDE(
     CALCULATE(
-        SUM(Fact_HospitalityBookings[gross_total_revenue_inr]),
-        Fact_HospitalityBookings[is_canceled] = 0
+        SUM(itc_master_hospitality_data[gross_total_revenue_inr]),
+        itc_master_hospitality_data[is_canceled] = 0
     ),
     10000000,
     0
 )
 ```
 
-### 2. Room Revenue & ADR
+### Measure 2: Total Profit / GOP (₹ Crores)
 ```dax
-Total Room Revenue (₹ Cr) = 
+Total Profit (₹ Cr) = 
 DIVIDE(
     CALCULATE(
-        SUM(Fact_HospitalityBookings[room_revenue_inr]),
-        Fact_HospitalityBookings[is_canceled] = 0
+        SUM(itc_master_hospitality_data[gross_operating_profit_inr]),
+        itc_master_hospitality_data[is_canceled] = 0
     ),
     10000000,
     0
 )
+```
 
-Average Daily Rate (ADR) = 
+### Measure 3: Average Occupancy Rate (%)
+```dax
+Avg Occupancy % = 
+DIVIDE(
+    CALCULATE(
+        COUNTROWS(itc_master_hospitality_data),
+        itc_master_hospitality_data[is_canceled] = 0
+    ),
+    COUNTROWS(itc_master_hospitality_data),
+    0
+) * 100
+```
+
+### Measure 4: F&B & Banquet Sales (₹ Crores)
+```dax
+F&B Sales (₹ Cr) = 
+DIVIDE(
+    CALCULATE(
+        SUM(itc_master_hospitality_data[combined_fnb_banquet_rev_inr]),
+        itc_master_hospitality_data[is_canceled] = 0
+    ),
+    10000000,
+    0
+)
+```
+
+### Measure 5: Average Daily Rate (ADR)
+```dax
+Avg ADR (₹) = 
 CALCULATE(
-    AVERAGE(Fact_HospitalityBookings[adr_inr]),
-    Fact_HospitalityBookings[is_canceled] = 0
+    AVERAGE(itc_master_hospitality_data[adr_inr]),
+    itc_master_hospitality_data[is_canceled] = 0
 )
 ```
 
-### 3. F&B & Banquet Revenue
-```dax
-Total F&B and Banquet Revenue (₹ Cr) = 
-DIVIDE(
-    CALCULATE(
-        SUM(Fact_HospitalityBookings[combined_fnb_banquet_rev_inr]),
-        Fact_HospitalityBookings[is_canceled] = 0
-    ),
-    10000000,
-    0
-)
-```
-
-### 4. Cancellation Rate (%)
+### Measure 6: Cancellation Rate (%)
 ```dax
 Cancellation Rate % = 
 DIVIDE(
-    CALCULATE(COUNTROWS(Fact_HospitalityBookings), Fact_HospitalityBookings[is_canceled] = 1),
-    COUNTROWS(Fact_HospitalityBookings),
+    CALCULATE(
+        COUNTROWS(itc_master_hospitality_data),
+        itc_master_hospitality_data[is_canceled] = 1
+    ),
+    COUNTROWS(itc_master_hospitality_data),
     0
 ) * 100
-```
-
-### 5. USALI Gross Operating Profit (GOP) & Margin
-```dax
-Gross Operating Profit (₹ Cr) = 
-DIVIDE(
-    CALCULATE(
-        SUM(Fact_HospitalityBookings[gross_operating_profit_inr]),
-        Fact_HospitalityBookings[is_canceled] = 0
-    ),
-    10000000,
-    0
-)
-
-GOP Margin % = 
-DIVIDE(
-    [Gross Operating Profit (₹ Cr)],
-    [Total Gross Revenue (₹ Cr)],
-    0
-) * 100
-```
-
-### 6. GOPPAR (GOP per Billed Room Night)
-```dax
-GOPPAR (₹) = 
-DIVIDE(
-    CALCULATE(
-        SUM(Fact_HospitalityBookings[gross_operating_profit_inr]),
-        Fact_HospitalityBookings[is_canceled] = 0
-    ),
-    CALCULATE(
-        SUM(Fact_HospitalityBookings[billed_nights]),
-        Fact_HospitalityBookings[is_canceled] = 0
-    ),
-    0
-)
 ```
 
 ---
 
-## 4. Visual Dashboard Layout (Canvas Recommendations)
-- **Top Row (KPI Cards):**
-  - Gross Revenue (`₹ 298.42 Cr`)
-  - Gross Operating Profit (`₹ 143.68 Cr`)
-  - GOP Margin (`48.15%`)
-  - Average ADR (`₹ 8,941`)
-  - Cancellation Rate (`37.0%`)
-- **Row 2:**
-  - *Left (Clustered Column Chart):* Monthly Revenue vs GOP (`arrival_date_month`).
-  - *Right (Donut Chart):* Revenue by Stream (Room Rev vs F&B/Banquet vs Minor Depts).
-- **Row 3:**
-  - *Left (Bar Chart):* Top Restaurant Outlets by Revenue (`primary_restaurant_outlet`).
-  - *Middle (Treemap):* Distribution Channel Mix (`channel_clean`).
-  - *Right (Line Chart):* Lead Time vs Cancellation Probability.
-- **Slicers (Filters on Left or Top):**
-  - `hotel_name` (Resort vs City Luxury)
-  - `arrival_date_year` (2015, 2016, 2017)
-  - `loyalty_program_tier` (Club ITC Tiers)
+## 4. Visual Layout on the 'Final' Page (Matching Reference Canvas)
+
+```text
++---------------------------------------------------------------------------------------------------+
+|  ITC HOTELS — EXECUTIVE BOARDROOM PERFORMANCE DASHBOARD                                           |
++---------------------+---------------------+---------------------+---------------------------------+
+| [ CARD 1 ]          | [ CARD 2 ]          | [ CARD 3 ]          | [ CARD 4 ]                      |
+| TOTAL REVENUE       | TOTAL PROFIT (GOP)  | AVG OCCUPANCY       | F&B SALES                       |
+| ₹ 298.42 Cr         | ₹ 143.68 Cr         | 62.9%               | ₹ 104.84 Cr                     |
++---------------------+---------------------+---------------------+---------------------------------+
+| [ DONUT CHART ]     | [ STACKED COLUMN ]                        | [ SLICERS (Right Strip) ]       |
+| Revenue Stream Mix  | Monthly Revenue vs GOP                    | • Property (Resort / City)      |
+| • Rooms (61%)       | Jan -> Dec                                | • Year (2015, 2016, 2017)       |
+| • F&B/Banquet (35%) |                                           | • Loyalty Tier (Culinaire, Gold)|
++---------------------+-------------------------------------------+---------------------------------+
+| [ HORIZONTAL BAR ]  | [ WATERFALL / AREA CHART ]                                                  |
+| Top Source Markets  | USALI Operating Cost Walk-Down (COGS, Payroll, Utilities, GOP)              |
++---------------------+-----------------------------------------------------------------------------+
+|  [ Room Analytics ] | [ FnB Analytics ] | [ Demographics ] | [ Profitability ] | [ Final (Selected) ] |
++---------------------------------------------------------------------------------------------------+
+```
+
+1. **Top Row (Visual: Card (new) / Multi-row Card):**
+   - Place 4 Cards side-by-side.
+   - Format: Background `#1E293B`, Data label font size 24, bold, White/Cyan.
+2. **Middle Left (Visual: Donut Chart):**
+   - Legend: `dining_plan` or Revenue categories.
+   - Values: `gross_total_revenue_inr`.
+3. **Middle Center (Visual: Clustered Column Chart):**
+   - X-axis: `arrival_date_month`.
+   - Y-axis: `[Total Revenue (₹ Cr)]` and `[Total Profit (₹ Cr)]`.
+4. **Right Edge (Visual: Slicer with Tile style):**
+   - Field 1: `hotel_name`
+   - Field 2: `arrival_date_year`
+   - Field 3: `loyalty_program_tier`
+5. **Bottom Area (Visual: Clustered Bar Chart & Waterfall Chart):**
+   - Bar chart: `guest_origin_country` on Y-axis, `total_guests` on X-axis.
+   - Waterfall chart: USALI Cost Breakdown.
+
+Once completed, click **File ➔ Save As** and save as `ITC_Hotels_Executive_Dashboard.pbix`!
