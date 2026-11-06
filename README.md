@@ -1,63 +1,42 @@
-# ITC Hotels — Master Executive Live Dashboards
-### ITC Hotels Hospitality Management Analytics | Academic & Executive Submission
-**Author:** Goku | **Property Portfolio:** ITC Maurya, ITC Grand Chola, ITC Grand Bharat, ITC Mughal
+# 🏨 ITC Hotels — Revenue & Business Performance Analysis
+**Invertis University, Bareilly** | Faculty of Computer Applications  
+**Project Guide:** Ms. Megha Saxena, Assistant Professor  
+**Student Team:**
+1. Jatin Sagar (Student ID: BC2023727, Roll No: 2311001156)
+2. Atul Kumar (Student ID: BC2023590, Roll No: 2310201157)
+3. Darshika Rathore (Student ID: BC2023687, Roll No: 2310101126)
+4. Muskan Saxena (Student ID: BC2023061, Roll No: 2310201370)
+
+**Technology Stack:** MySQL 8.0 / SQLite 3NF Database, Python (Pandas, Matplotlib, Seaborn), Power BI Desktop, Microsoft Excel (Live Pivot Tables & Slicers).
 
 ---
+## Final Executive Dashboards & SQL Integration
 
-## 📌 Project Overview
-Executive portfolio presentation suite containing interactive Microsoft Excel (.xlsx) live dashboard, standalone HTML executive web portal, and Power BI DAX modeling blueprint.
+### 📌 Overview
+Consolidates all 4 analytical modules into industry-standard deliverables:
+1. **Relational SQL Database:** 18 tables/views in 3NF (`itc_hotel_analytics.db` & `itc_hotels_mysql_dump.sql`).
+2. **Data Cleaning & EDA Notebook:** Matplotlib visualizations and data pipeline (`data_cleaning_eda.ipynb`).
+3. **Interactive Plotly Dashboard:** 5 bottom tabs and top square KPI cards (`interactive_jupyter_dashboard.ipynb`).
+4. **Master Live Excel Dashboard:** 5 sheets with native charts and KPI cards (`ITC_Executive_Live_Dashboard.xlsx`).
+5. **Power BI Integration Guide:** Star-schema connection, DAX formulas, and visual layouts (`POWER_BI_SQL_INTEGRATION_GUIDE.md`).
 
-This repository forms a core module of the **ITC Hotels Comprehensive Analytics Project**, tailored to luxury hospitality standards, customer retention, and the **USALI (Uniform System of Accounts for the Lodging Industry)** framework.
-
----
-
-## 🎯 Key Performance Indicators (KPIs) Tracked
-- **Consolidated Portfolio Gross Revenue (₹ 298.42 Cr)**
-- **Gross Operating Profit (₹ 143.68 Cr, 48.15% Margin)**
-- **Average Daily Rate (₹ 8,941) across 75,166 Confirmed Stays**
-- **Comprehensive USALI Hospitality Income Statement**
-- **Interactive Visual Analytics for Multi-Property Executive Board Review**
-
----
-
-## 📁 Repository Structure
-```text
-ITC-Final-Dashboards/
-├── README.md                               # Project documentation & business insights
-├── requirements.txt                        # Python package dependencies
-├── .gitignore                              # Git exclusion rules
-├── itc_master_hospitality_data.csv                            # Curated dataset (119,390 records)
-├── ITC_Executive_Live_Dashboard.xlsx      # Master formatted Excel dashboard
-├── index.html                              # Standalone HTML/Tailwind/Chart.js live dashboard
-└── POWER_BI_MODELING_GUIDE.md              # Power BI star schema & DAX formulas
+### 📁 Repository Structure
+```
+├── README.md                                 # Master documentation
+├── requirements.txt                          # Dependencies
+├── .gitignore                                # Git rules
+├── itc_hotel_analytics.db                    # 3NF SQLite Database (18 tables, 87k rows)
+├── itc_hotels_mysql_dump.sql                 # Complete MySQL 8.0 DDL & Data Dump
+├── data_cleaning_eda.ipynb                   # Data cleaning & Matplotlib EDA
+├── interactive_jupyter_dashboard.ipynb       # Interactive Plotly executive dashboard
+├── ITC_Executive_Live_Dashboard.xlsx         # Master Excel live dashboard
+├── itc_luxury_theme.json                     # Power BI Luxury Theme
+├── POWER_BI_SQL_INTEGRATION_GUIDE.md         # SQL connection & DAX documentation
+└── PROJECT_VIVA_PREPARATION.md               # Viva defense questions & answers
 ```
 
----
-
-### 📊 Executive Dashboards
-- **Excel Live Dashboard:** [`ITC_Executive_Live_Dashboard.xlsx`](ITC_Executive_Live_Dashboard.xlsx) (Formatted multi-tab USALI model).
-- **Interactive Web Dashboard:** Open [`index.html`](index.html) in any modern browser.
-- **Power BI Guide:** [`POWER_BI_MODELING_GUIDE.md`](POWER_BI_MODELING_GUIDE.md) (Step-by-step Windows setup & DAX formulas).
-
-
----
-
-## 💡 Executive Insights & Strategic Findings
-- Offers a single pane of glass uniting Rooms, F&B, Banquets, Guest Demographics, and Financial Costs.
-- Interactive Excel Dashboard (`ITC_Executive_Live_Dashboard.xlsx`) includes 5 styled reporting tabs ready for instant evaluation.
-- HTML Web Dashboard (`index.html`) runs directly inside any web browser on Ubuntu without Windows dependency.
-- Power BI Data Model guide (`POWER_BI_MODELING_GUIDE.md`) enables instant drag-and-drop report recreation in Windows.
-
----
-
-## 🚀 Setup & Execution Guide
-1. Clone this repository:
-   ```bash
-   git clone <REPO_URL>
-   cd ITC-Final-Dashboards
-   ```
-2. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
-3. Inspect and analyze the data!
+### 🚀 Quick Launch
+```bash
+# Launch terminal hub
+./run_dashboard.sh
+```

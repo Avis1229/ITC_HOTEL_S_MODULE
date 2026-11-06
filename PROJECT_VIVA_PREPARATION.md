@@ -41,12 +41,20 @@
 
 ---
 
-### Q3. Dashboards kaise bane hain?
-1. **Excel Dashboard (`ITC_Executive_Live_Dashboard.xlsx`):**
-   - 5 tabs: Executive Scorecard, Room Revenue, F&B & Banquets, Demographics, USALI Profitability.
-   - Formatted currency (`₹`), auto-fitted columns, aur **native embedded Excel charts** (Bar, Line, Column).
-2. **Interactive Live Web Dashboard (`index.html`):**
-   - Pure HTML5 + Tailwind CSS + Chart.js.
-   - Ubuntu browser me bina Windows khole interactive charts aur live filters dikhane ke liye.
-3. **Power BI Ready Model (`POWER_BI_MODELING_GUIDE.md`):**
-   - Windows me Power BI Desktop me `itc_master_hospitality_data.csv` load karke ready DAX measures drag-drop karne ke liye.
+### Q3. Dashboards aur Databases kaise bane hain?
+1. **Relational Database (`itc_hotel_analytics.db` & `itc_hotels_mysql_dump.sql`):**
+   - 18 tables & views in Third Normal Form (3NF) following hospitality enterprise schema.
+   - Star Schema optimized for Power BI: `dim_properties`, `dim_rooms`, `dim_calendar`, `fact_bookings`, `fact_room_inventory`.
+2. **Excel Dashboard (`ITC_Executive_Live_Dashboard.xlsx`):**
+   - 5 tabs: Room Analytics, FnB Analytics, Demographics, Profitability, Final.
+   - Top 4 Square KPI cards, formatted currency (`₹`), auto-fitted columns, aur **native embedded Excel charts** (Bar, Line, Column).
+3. **Data Cleaning & Matplotlib EDA (`data_cleaning_eda.ipynb`):**
+   - Full data cleaning pipeline: nulls handling, duplicate removal, outlier treatment.
+   - Professional Matplotlib & Seaborn plots (boxplots, heatmaps, dual-axis trends).
+   - SQL queries via Python `sqlite3` driver.
+4. **Interactive Jupyter Dashboard (`interactive_jupyter_dashboard.ipynb`):**
+   - Plotly Dark Luxury Theme with interactive filters, waterfall charts, and KPI cards.
+5. **Power BI Dashboard with SQL Connection (`POWER_BI_SQL_INTEGRATION_GUIDE.md`):**
+   - Direct connection to MySQL / SQLite ODBC.
+   - Ready DAX measures: ADR, RevPAR, Occupancy %, Realisation %, DSRN, DURN, MoM & WoW Growth.
+   - 4 module pages matching Figures A.1, A.2, A.3, A.4 from the project report.
