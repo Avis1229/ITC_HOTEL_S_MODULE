@@ -1,0 +1,28 @@
+================================================================================
+EXCEL LIVE DASHBOARD — HOW TO OPEN & SHOW
+================================================================================
+
+File: ITC_Executive_Live_Dashboard.xlsx
+
+1. Ubuntu par open karne ke liye:
+   Terminal me run karo:
+   xdg-open ITC_Executive_Live_Dashboard.xlsx
+   (Ya LibreOffice Calc me double-click karke khol lo)
+
+2. Windows par open karne ke liye:
+   Microsoft Excel me double-click karke open karo.
+
+3. Isme kya hai:
+   - Niche EXACT 5 TABS hain:
+     1. Room Analytics (Module 1)
+     2. FnB Analytics (Module 2)
+     3. Demographics (Module 3)
+     4. Profitability (Module 4)
+     5. Final (Master Executive Overview)
+   - 'Final' tab par TOP par 4 SQUARE KPI CARDS hain:
+     * Total Revenue: ₹ 298.42 Cr
+     * Total Profit (GOP): ₹ 143.68 Cr
+     * Avg Occupancy: 62.9%
+     * F&B + Banquet Sales: ₹ 104.84 Cr
+   - Saare embedded native Excel charts hain (Column, Bar, Line).
+================================================================================

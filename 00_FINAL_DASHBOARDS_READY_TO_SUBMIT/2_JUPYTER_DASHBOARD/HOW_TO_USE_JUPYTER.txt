@@ -1,0 +1,26 @@
+================================================================================
+JUPYTER INTERACTIVE DASHBOARDS — HOW TO RUN
+================================================================================
+
+Is folder me 2 main notebooks hain:
+
+1. interactive_jupyter_dashboard.ipynb
+   - Executive Plotly Dark Luxury Dashboard
+   - 4 Indicator KPI Cards, USALI Waterfall Chart, Donut Chart, Multi-bar charts
+   - Run karne ke liye:
+     jupyter notebook interactive_jupyter_dashboard.ipynb
+
+2. data_cleaning_eda.ipynb
+   - Matplotlib & Seaborn Data Cleaning + EDA Pipeline
+   - Missing values handle karna, 31k duplicates hatana, outliers cap karna
+   - Matplotlib ke 8 professional research charts
+   - Live SQL queries (sqlite3 se database connect karke)
+   - Run karne ke liye:
+     jupyter notebook data_cleaning_eda.ipynb
+
+SHORTCUT (Sabse Aasaan):
+Terminal me root par jao aur ye run karo:
+cd /home/goku/ITC_Hotels_Project
+./run_dashboard.sh
+(Option 1 ya 2 choose karo, notebook turant browser me khul jayega!)
+================================================================================

@@ -1,0 +1,25 @@
+================================================================================
+POWER BI EXECUTIVE DASHBOARD — HOW TO BUILD ON WINDOWS
+================================================================================
+
+Kyunki Power BI Desktop natively Ubuntu par nahi chalta, isliye ye steps
+apne HP Victus ke Windows boot me karne hain:
+
+1. Windows OS boot karo.
+2. Power BI Desktop open karo.
+3. Data Load karo:
+   Option A (Sabse Simple):
+   Get Data -> Text/CSV -> is folder ki 'itc_master_hospitality_data.csv' choose karo -> Load!
+   Option B (SQL Database):
+   XAMPP start karo, phpMyAdmin me 'itc_hotels_mysql_dump.sql' import karo,
+   aur Get Data -> MySQL Database select karo.
+
+4. Dark Luxury Theme lagao:
+   View tab -> Themes -> Browse for themes -> is folder ki 'itc_luxury_theme.json' choose karo.
+   (Pura dashboard instant Dark Slate & Gold ITC theme me badal jayega!)
+
+5. DAX Measures & Charts:
+   Saare readymade DAX formulas aur 5 pages ke layouts is file me diye hain:
+   'POWER_BI_SQL_INTEGRATION_GUIDE.md'
+   Bas copy-paste karo aur save karo as: 'ITC_Hotels_Executive_Dashboard.pbix'!
+================================================================================
